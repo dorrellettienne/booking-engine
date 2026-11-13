@@ -1,15 +1,7 @@
 
-# ------------------------------------
-# 1. Check whether a booking is valid
-# ------------------------------------
 
 def is_valid_slot(start, end):
     return start >= 9 and end <= 17 and start < end
-
-
-# ------------------------------------
-# 2. Check whether bookings overlap
-# ------------------------------------
 
 def overlaps(existing_start, existing_end,
              requested_start, requested_end):
@@ -18,11 +10,6 @@ def overlaps(existing_start, existing_end,
         existing_start < requested_end
         and requested_start < existing_end
     )
-
-
-# ------------------------------------
-# 3. Add a new booking
-# ------------------------------------
 
 def add_booking(bookings, start, end):
 
@@ -43,16 +30,11 @@ def add_booking(bookings, start, end):
     bookings.append((start, end))
     return True
 
-# ------------------------------------
-# 4. Automated unit tests
-# ------------------------------------
-
 import unittest
 
 
 class TestBookingEngine(unittest.TestCase):
 
-    # Test 1: Duplicate bookings must be rejected
     def test_duplicate_booking(self):
         bookings = [(9, 10)]
 
@@ -61,7 +43,6 @@ class TestBookingEngine(unittest.TestCase):
         self.assertFalse(result)
         self.assertEqual(bookings, [(9, 10)])
 
-    # Test 2: Bookings outside hours must be rejected
     def test_outside_hours(self):
         bookings = [(9, 10)]
 
@@ -70,7 +51,6 @@ class TestBookingEngine(unittest.TestCase):
         self.assertFalse(result)
         self.assertEqual(bookings, [(9, 10)])
 
-    # Test 3: Adjacent bookings should be accepted
     def test_adjacent_booking(self):
         bookings = [(9, 10)]
 
@@ -79,7 +59,6 @@ class TestBookingEngine(unittest.TestCase):
         self.assertTrue(result)
         self.assertEqual(bookings, [(9, 10), (10, 11)])
 
-    # Test 4: Partial overlaps must be rejected
     def test_partial_overlap(self):
         bookings = [(9, 10)]
 
@@ -120,10 +99,6 @@ class TestBookingEngine(unittest.TestCase):
         self.assertTrue(result)
         self.assertEqual(bookings, [(9, 10), (16, 17)])
 
-
-# ------------------------------------
-# 5. Run automated tests
-# ------------------------------------
 
 if __name__ == "__main__":
     unittest.main()
