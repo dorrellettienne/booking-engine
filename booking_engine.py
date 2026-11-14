@@ -16,17 +16,14 @@ def add_booking(bookings, start, end):
     if not isinstance(start, (int, float)) or not isinstance(end, (int, float)):
             return False
 
-    # First: check whether the requested time is valid
     if not is_valid_slot(start, end):
         return False
 
-    # Second: check each existing booking for conflicts
     for existing_start, existing_end in bookings:
         if overlaps(existing_start, existing_end,
                     start, end):
             return False
 
-    # Third: add the booking if there are no conflicts
     bookings.append((start, end))
     return True
 
